@@ -40,7 +40,7 @@ def main():
     for file in filePaths:
       zip_file.write(file)
        
-  print(world_name + now + '.zip file is created successfully!')
+  print(world_name +'.'+ now + '.zip file is created successfully!')
    
 # Call the main function
 if __name__ == "__main__":
