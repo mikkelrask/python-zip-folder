@@ -15,10 +15,8 @@ It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org")
 
 The path varies from OS to OS. Windows is typically 
 
-```c:/Users/*Your Name*/AppData/Roaming/.minecraft/saves
-```, while it's usually in 
-```~/.minecraft/saves
-``` on unix like systems, like MacOS or most linux distros.
+```c:/Users/*Your Name*/AppData/Roaming/.minecraft/saves```, while it's usually in 
+```~/.minecraft/saves``` on unix like systems, like MacOS or most linux distros.
 
 
 **Install requirements (mega.py)**
