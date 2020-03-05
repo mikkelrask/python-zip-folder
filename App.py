@@ -1,47 +1,67 @@
 import os
 import zipfile
 import datetime
+from mega import Mega # install dependencies with 'pip install -r requirements.txt'
+
+# IMPORTANT!
+# Set your world name on line 46!
+
+# Mega.NZ login
+megaMail = '' # Insert your mail address for Mega.nz between the single quotes
+megaPass = '' # Insert your password for Mega.nz between the single quotes
  
- 
-# Declare the function to return all file paths of the particular directory
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 def retrieve_file_paths(dirName):
  
-  # setup file paths variable
   filePaths = []
    
-  # Read all directory, subdirectories and file lists
   for root, directories, files in os.walk(dirName):
     for filename in files:
-        # Create the full filepath by using os module.
         filePath = os.path.join(root, filename)
         filePaths.append(filePath)
          
-  # return all paths
   return filePaths
- 
- 
-# Declare the main function
+
+mega = Mega()
+
+m = mega.login(megaMail, megaPass)
+
+
+
 def main():
-# Assign the name of the directory to zip
-  world_name = 'backup'
+  world_name = '' # Insert the name of the folder you want to back up (your world name)
   now = str(datetime.datetime.now())
-  # Call the function to retrieve all files and folders of the assigned directory
+  ziparchive = world_name + now + '.zip'
   filePaths = retrieve_file_paths(world_name)
-   
-  # printing the list of all files to be zipped
-  print('The following list of files will be zipped:')
+
+  print(bcolors.HEADER + '[+] Backing up world:' + bcolors.ENDC)
   for fileName in filePaths:
     print(fileName)
-     
-  # writing files to a zipfile
-  zip_file = zipfile.ZipFile(world_name + now + '.zip', 'w')
+
+  print('')   
+  print(bcolors.WARNING + '[!] This may take a while, depending on your world, computer specs and such.' + bcolors.ENDC)
+  zip_file = zipfile.ZipFile(ziparchive, 'w')
   with zip_file:
-    # writing each file one by one
     for file in filePaths:
       zip_file.write(file)
        
-  print(world_name +'.'+ now + '.zip file is created successfully!')
+  print(bcolors.OKGREEN + '[+]' + ziparchive + ' file was created successfully!' + bcolors.ENDC)
+  print(bcolors.WARNING + '[!] Uploading .. Please wait.. ' + bcolors.ENDC)
+  backup = m.upload(ziparchive)
+  print(bcolors.OKGREEN + world_name + ' has been backed up to Mega.' + bcolors.ENDC)
+  m.get_upload_link(backup)
+
+
    
-# Call the main function
+# Let's do this
 if __name__ == "__main__":
   main()
