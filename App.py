@@ -7,8 +7,8 @@ from mega import Mega # install dependencies with 'pip install -r requirements.t
 # Set your world name on line 46!
 
 # Mega.NZ login
-megaMail = 'mikkelrask@pm.me' # Insert your mail address for Mega.nz between the single quotes
-megaPass = '5WEdNQ3keVqAPD9' # Insert your password for Mega.nz between the single quotes
+megaMail = '' # Insert your mail address for Mega.nz between the single quotes
+megaPass = '' # Insert your password for Mega.nz between the single quotes
  
 class bcolors:
     HEADER = '\033[95m'

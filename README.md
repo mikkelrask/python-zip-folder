@@ -2,9 +2,11 @@
 
 A simple python script i made to frequently backup my minecraft world, and automaticly upload it to Mega.nz. 
 
-It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org")
+It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org") and the idea is to run it on a daily basis through a basic [cron job](https://en.wikipedia.org/wiki/Cron "Cron on Wiki"), or whatever equilant your OS offers.
 
-![alt text](https://i.imgur.com/LnSj5FN.png "Screenshot of python-zip-folder in termite")
+It should be able to run on every machine that has python installed, but have not been testet 
+
+![alt text](https://i.imgur.com/LnSj5FN.png "Screenshot of Zip'n'Backup in termite")
 
 ## Installing 
 **Download the script**
@@ -16,9 +18,7 @@ It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org")
 ```cp python-zip-folder/App.py PATH-TO-YOUR-SAVES-FOLDER```
 
 The path varies from OS to OS. Windows is typically 
-
-```c:/Users/*Your Name*/AppData/Roaming/.minecraft/saves```, while it's usually in 
-```~/.minecraft/saves``` on unix like systems, like MacOS or most linux distros.
+c:/Users/*Your Name*/AppData/Roaming/.minecraft/saves, while it's usually in ~/.minecraft/saves on unix like systems, like MacOS or most linux distros.
 
 
 **Install requirements (mega.py)**
@@ -31,7 +31,7 @@ Now you can either run the script manually simply by typing:
 
 ```python App.py ```
 
-while in your saves folder, or you can use a [cron job](https://en.wikipedia.org/wiki/Cron "Cron on Wiki") or similar, to do it for you, on a specific schedule.
+while in your saves folder, or you can use a cron job or similar, to do it for you, on a specific schedule.
 
 
 ## Configuring
