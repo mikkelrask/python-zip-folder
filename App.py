@@ -7,8 +7,8 @@ from mega import Mega # install dependencies with 'pip install -r requirements.t
 # Set your world name on line 46!
 
 # Mega.NZ login
-megaMail = '' # Insert your mail address for Mega.nz between the single quotes
-megaPass = '' # Insert your password for Mega.nz between the single quotes
+megaMail = 'mikkelrask@pm.me' # Insert your mail address for Mega.nz between the single quotes
+megaPass = '5WEdNQ3keVqAPD9' # Insert your password for Mega.nz between the single quotes
  
 class bcolors:
     HEADER = '\033[95m'
@@ -38,8 +38,8 @@ m = mega.login(megaMail, megaPass)
 
 
 def main():
-  world_name = '' # Insert the name of the folder you want to back up (your world name)
-  now = str(datetime.datetime.now())
+  world_name = 'worldname' # Insert the name of the folder you want to back up (your world name)
+  now = str(datetime.datetime.today())
   ziparchive = world_name + now + '.zip'
   filePaths = retrieve_file_paths(world_name)
 
@@ -54,11 +54,16 @@ def main():
     for file in filePaths:
       zip_file.write(file)
        
-  print(bcolors.OKGREEN + '[+]' + ziparchive + ' file was created successfully!' + bcolors.ENDC)
+  print(bcolors.OKGREEN + '[+] ' + ziparchive + ' file was created successfully!' + bcolors.ENDC)
   print(bcolors.WARNING + '[!] Uploading .. Please wait.. ' + bcolors.ENDC)
   backup = m.upload(ziparchive)
-  print(bcolors.OKGREEN + world_name + ' has been backed up to Mega.' + bcolors.ENDC)
-  m.get_upload_link(backup)
+  print(bcolors.OKGREEN + world_name + ' has been backed up to:' + bcolors.ENDC)
+  link = m.get_upload_link(backup)
+  print(bcolors.UNDERLINE + 'Mega link: ' + bcolors.BOLD + link + bcolors.ENDC)
+  quota = m.get_storage_space(giga=True)
+  print('')
+  print('[i] You have now used '+ bcolors.OKGREEN + str(round(quota['used'], 2)) + ' GB' + bcolors.ENDC +  ' of your ' + bcolors.OKGREEN + str(quota['total']) + ' GB ' + bcolors.ENDC +'total on your Mega account.')
+ 
 
 
    

@@ -4,6 +4,8 @@ A simple python script i made to frequently backup my minecraft world, and autom
 
 It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org")
 
+![alt text](https://i.imgur.com/LnSj5FN.png "Screenshot of python-zip-folder in termite")
+
 ## Installing 
 **Download the script**
 
