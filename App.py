@@ -1,24 +1,36 @@
 import os
 import zipfile
 import datetime
-from mega import Mega # install dependencies with 'pip install -r requirements.txt'
-
-# IMPORTANT!
-# Set your world name on line 46!
+from mega import Mega # install dependencies with pip install -r requirements.txt
+import argparse
 
 # Mega.NZ login
 megaMail = '' # Insert your mail address for Mega.nz between the single quotes
-megaPass = '' # Insert your password for Mega.nz between the single quotes
- 
+megaPass = '' # Insert your password for Mega.nz between the single quotesquotes
+
+worldFolder = '' # Type the name of the directory/world you want to backup
+
+# Nothin below here really needs to be edited
+
+parser = argparse.ArgumentParser("python App.py")
+parser.add_argument("-u", "--user", type=str, help="Mega.NZ username (overrules megaMail set in script")
+parser.add_argument("-p", "--passw", type=str, help="Mega.NZ password (overrules megaPass set in script")
+parser.add_argument('-w', '--world', type=str, help="Name of the folder/world to back up (overrules worldFolder set in script")
+args = parser.parse_args()
+
+passed_user = args.user
+passed_password = args.passw
+passed_worldname = args.world
+
+
 class bcolors:
     HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
-    FAIL = '\033[91m'
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+    FAIL = '\033[91m'
 
 def retrieve_file_paths(dirName):
  
@@ -33,17 +45,35 @@ def retrieve_file_paths(dirName):
 
 mega = Mega()
 
-m = mega.login(megaMail, megaPass)
-
+if passed_user != None:
+  if passed_password == None:
+    passed_password = input('Type the Mega.nz password for user ' + passed_user + ': ')
+  m = mega.login(passed_user, passed_password)
+elif megaMail and megaPass != '':
+  m = mega.login(megaMail, megaPass)
+else:
+  print(bcolors.FAIL + 'No account settings found for Mega.nz' + bcolors.ENDC)
+  print('Run with --help for more info')
+  exit()
 
 
 def main():
-  world_name = 'worldname' # Insert the name of the folder you want to back up (your world name)
-  now = str(datetime.datetime.today())
-  ziparchive = world_name + now + '.zip'
-  filePaths = retrieve_file_paths(world_name)
+  if str(args.world) != 'None':
+    world = str(args.world)
+  else:
+    world = worldFolder
 
-  print(bcolors.HEADER + '[+] Backing up world:' + bcolors.ENDC)
+  if world == '':
+    print(bcolors.FAIL + 'No world folder set.' + bcolors.ENDC)
+    print('Run --help for more info')
+    exit()
+
+
+  now = str(datetime.datetime.today().date())
+  ziparchive = world + '.' + now + '.zip'
+  filePaths = retrieve_file_paths(world)
+
+  print(bcolors.HEADER + '[+]'+ bcolors.ENDC +' Backing up '+world+':')
   for fileName in filePaths:
     print(fileName)
 
@@ -54,12 +84,13 @@ def main():
     for file in filePaths:
       zip_file.write(file)
        
-  print(bcolors.OKGREEN + '[+] ' + ziparchive + ' file was created successfully!' + bcolors.ENDC)
-  print(bcolors.WARNING + '[!] Uploading .. Please wait.. ' + bcolors.ENDC)
-  backup = m.upload(ziparchive)
-  print(bcolors.OKGREEN + world_name + ' has been backed up to:' + bcolors.ENDC)
+  print(bcolors.OKGREEN + '[+] ' + bcolors.ENDC + ziparchive + ' file was created successfully!')
+  folder = m.find('mcbackup')
+  print(bcolors.WARNING + '[!]' + bcolors.ENDC +' Uploading .. Please wait.. ')
+  backup = m.upload(ziparchive, folder)
+  print(bcolors.OKGREEN + world  + bcolors.ENDC+ ' has been backed up to following Mega link:')
   link = m.get_upload_link(backup)
-  print(bcolors.UNDERLINE + 'Mega link: ' + bcolors.BOLD + link + bcolors.ENDC)
+  print(bcolors.UNDERLINE + bcolors.BOLD + link + bcolors.ENDC)
   quota = m.get_storage_space(giga=True)
   print('')
   print('[i] You have now used '+ bcolors.OKGREEN + str(round(quota['used'], 2)) + ' GB' + bcolors.ENDC +  ' of your ' + bcolors.OKGREEN + str(quota['total']) + ' GB ' + bcolors.ENDC +'total on your Mega account.')
