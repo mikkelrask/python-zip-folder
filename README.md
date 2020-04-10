@@ -36,3 +36,11 @@ while in your saves folder, or you can use a cron job or similar, to do it for y
 
 ## Configuring
 While mega uploads can be anonymized, using the script assumes you have a Mega.nz account. Open up App.py in any text editor and put in your account credentials on line 10 and 11 (```megaMail``` and ```megaPass```), and put in the name if your world save folder name on line 46 (```world_name```), and hit save.
+
+## One liners
+If you really don't want to open your text editor you're able to pass arguments through the commandline.
+Ie ```python App.py -u YourEmail@Provider.com -p YourPassword -w Foldername -dl 1```
+```-dl``` expects and integer representing how many backups/days you want to go back.
+
+## Help
+Run ```python App.py --help```
