@@ -38,8 +38,16 @@ while in your saves folder, or you can use a cron job or similar, to do it for y
 While mega uploads can be anonymized, using the script assumes you have a Mega.nz account. Open up App.py in any text editor and put in your account credentials in (```megaMail``` and ```megaPass```), and put in the name if your world save folder name on (```world_name```), and hit save.
 
 ## One liners
-If you really don't want to open your text editor you're able to pass arguments through the commandline.
-Ie ```python App.py -u YourEmail@Provider.com -p YourPassword -w Foldername -dl 1```
+If you want to have more control or run multiple instances (to have more than one world backup, or back up to multiple accounts) you're also able to pass arguments through the commandline.
+
+Ie:
+```python App.py -u allan@yahoo.com -p ui1iIsmjz7/#,Ajkjc -w HawaiiMC -dl 1```
+
+will download a one day old backup of the HawaiiMC on the account owned by allan@yahoo.com
+
+```-u``` expects a string. This is your email for your Mega.nz account
+```-p``` expects a string. This is your password for your Mega.nz account
+```-w``` expects a string. With this one you are able to define what folder/world you wan't to backup.
 ```-dl``` is of course optional and expects and integer representing how many backups/days you want to go back.
 
 ## Help

@@ -73,14 +73,14 @@ def download_backup():
           linklist.append(link)
 
   location = os.getcwd()
-  print(bcolors.WARNING + '[!]' + bcolors.ENDC + ' Downloading backup from ' + bcolors.WARNING + str(dl) + bcolors.ENDC + ' days ago.. Please wait')
+  print(bcolors.WARNING + '[!]' + bcolors.ENDC + ' Mining duped world from ' + bcolors.WARNING + str(dl) + bcolors.ENDC + ' days ago.. Please wait')
   filenamelist.sort(reverse=True)
   linklist.sort(reverse=True)
   dllink = (str(linklist[days_back]))
   dlfile = str(filenamelist[days_back])
   m.download_url(dllink, location)
-  print(bcolors.OKGREEN + '[+]' + bcolors.ENDC + ' Download complete')
-  print(bcolors.WARNING + '[!]' + bcolors.ENDC + ' Unzipping world - hold on, almost there')
+  print(bcolors.OKGREEN + '[+]' + bcolors.ENDC + ' Mining complete')
+  print(bcolors.WARNING + '[!]' + bcolors.ENDC + ' Crafting world from dupe - this will just take a tick, almost there')
   with zipfile.ZipFile(dlfile, 'r') as zipObj:
     # Extract all the contents of zip file in current directory
     zipObj.extractall()
@@ -110,27 +110,29 @@ def main():
   ziparchive = world + now + '.zip'
   filePaths = retrieve_file_paths(world)
 
-  print(bcolors.HEADER + '[+]'+ bcolors.ENDC +' Backing up '+world+':')
+  print(bcolors.HEADER + '[+]'+ bcolors.ENDC +' Duping ' + world + ':')
   for fileName in filePaths:
     print(fileName)
 
   print('')   
-  print(bcolors.WARNING + '[!] This may take a couple of minutes, depending on your world, computer specs and such.' + bcolors.ENDC)
+  print(bcolors.WARNING + '[!] Crafting a shulker box with your world inside. This may have the Slowness effect depending on your world size, computers specs and such.' + bcolors.ENDC)
   zip_file = zipfile.ZipFile(ziparchive, 'w')
   with zip_file:
     for file in filePaths:
       zip_file.write(file)
        
-  print(bcolors.OKGREEN + '[+] ' + bcolors.ENDC + ziparchive + ' file was created successfully!')
+  print(bcolors.OKGREEN + '[+] ' + bcolors.ENDC + ziparchive + ' shulker was crafted successfully!')
   folder = m.find('mcbackup')
   print(bcolors.WARNING + '[!]' + bcolors.ENDC +' Uploading .. Please wait.. ')
   backup = m.upload(ziparchive, folder)
-  print(bcolors.OKGREEN + world  + bcolors.ENDC+ ' has been backed up to following Mega link:')
+  print(bcolors.OKGREEN + world  + bcolors.ENDC+ ' has been duped like TNT and sent to your sorting system:')
   link = m.get_upload_link(backup)
   print(bcolors.UNDERLINE + bcolors.BOLD + link + bcolors.ENDC)
   quota = m.get_storage_space(giga=True)
   print('')
-  print('[i] You have now used '+ bcolors.OKGREEN + str(round(quota['used'], 2)) + ' GB' + bcolors.ENDC +  ' of your ' + bcolors.OKGREEN + str(quota['total']) + ' GB ' + bcolors.ENDC +'total on your Mega account.')
+  print(bcolors.WARNING + '[!]' + bcolors.ENDC + 'Tidying up - throwing local shulker in lava')
+  os.remove(backup)
+  print('[i] You have now used '+ bcolors.OKGREEN + str(round(quota['used'], 2)) + ' GB' + bcolors.ENDC +  ' of your ' + bcolors.OKGREEN + str(quota['total']) + ' GB ' + bcolors.ENDC +'total in your sorting systems inventory.')
  
 
 
