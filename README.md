@@ -49,7 +49,7 @@ will download Allan's HawaiiMC backup from yesterday.
 
 ```-p``` expects a string. This is your password for your Mega.nz account
 
-```-w``` expects a string. With this one you are able to define what folder/world you wan't to backup.
+```-w``` expects a string. With this one you are able to define what folder/world you want to backup.
 
 ```-dl``` is of course optional and expects and integer representing how many backups/days you want to go back.
 
