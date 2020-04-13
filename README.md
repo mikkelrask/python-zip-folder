@@ -43,11 +43,14 @@ If you want to have more control or run multiple instances (to have more than on
 Ie:
 ```python App.py -u allan@yahoo.com -p ui1iIsmjz7/#,Ajkjc -w HawaiiMC -dl 1```
 
-will download a one day old backup of the HawaiiMC on the account owned by allan@yahoo.com
+will download Allan's HawaiiMC backup from yesterday.
 
 ```-u``` expects a string. This is your email for your Mega.nz account
+
 ```-p``` expects a string. This is your password for your Mega.nz account
+
 ```-w``` expects a string. With this one you are able to define what folder/world you wan't to backup.
+
 ```-dl``` is of course optional and expects and integer representing how many backups/days you want to go back.
 
 ## Help
