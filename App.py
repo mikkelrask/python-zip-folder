@@ -22,22 +22,22 @@ class bcolors:  # Set the colors we use
     FAIL = '\033[91m'
 
 
-parser = argparse.ArgumentParser("python App.py")  # The --help section
-parser.add_argument("-u", "--user", type=str,
-                    help="Your Mega.NZ username. Usage: "
-                    + bcolors.OKGREEN + " python App.py -u \
-                    youremail@megaaccount.nz"
-                    + bcolors.ENDC + " (overrules megaMail set in script)")
-parser.add_argument("-p", "--password", type=str, help="Mega.NZ password\
-                    (overrules megaPass set in App.py)")
+parser = argparse.ArgumentParser('python App.py')  # The --help section
+parser.add_argument('-u', '--user', type=str,
+                    help='Your Mega.NZ username. Usage: '
+                    + bcolors.OKGREEN + ' python App.py -u \
+                    youremail@megaaccount.nz'
+                    + bcolors.ENDC + ' (overrules megaMail set in script)')
+parser.add_argument('-p', '--password', type=str, help='Mega.NZ password\
+                    (overrules megaPass set in App.py)')
 parser.add_argument('-w', '--world', type=str,
-                    help="Name of the folder/world\
-                    to back up (overrules worldFolder set in App.py")
+                    help='Name of the folder/world\
+                    to back up (overrules worldFolder set in App.py')
 parser.add_argument('-dl', '--download', type=int,
-                    help="Download and unpack\
-                    backups. Usage: " + bcolors.OKGREEN + " python App.py\
-                    -dl 1 " + bcolors.ENDC + "where 1 indicates how many\
-                    days/backups you want to go.")
+                    help='Download and unpack\
+                    backups. Usage: ' + bcolors.OKGREEN + ' python App.py\
+                    -dl 1 ' + bcolors.ENDC + 'where 1 indicates how many\
+                    days/backups you want to go.')
 args = parser.parse_args()
 
 passed_user = args.user
@@ -168,5 +168,5 @@ def main():
 
 
 # Let's do this
-if __name__ == "__main__":
+if __name__ == '__main__':
   main()
