@@ -1,8 +1,8 @@
 megaCreds = {
-    'user': '',
-    'password': ''
+    'user': 'YOUR MEGA.NZ ACCOUNT EMAIL HERE',
+    'password': 'YOUR PASSWORD HERE'
 }
 
 world = {
-    'folderName': ''
+    'folderName': 'YOUR WORLD FOLDER NAME HERE'
 }
