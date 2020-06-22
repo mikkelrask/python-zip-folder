@@ -5,6 +5,7 @@ import argparse
 import config
 from mega import Mega
 import psutil
+import platform
 
 
 # Nothin below here really needs to be edited
@@ -41,6 +42,12 @@ dl = args.download
 
 mega = Mega()  # Initiate Mega lib
 
+if platform.system() == 'Linux':
+    runningFile = 'java'
+elif platform.system() == 'Darwin':
+    runningFile = 'javaw.app'
+elif platform.system() == 'Windows':
+    runningFile = 'javaw'
 
 # Check if user and pass is set or passed
 if passed_user is not None:
@@ -169,7 +176,7 @@ def main():
 
 # Let's do this
 if __name__ == '__main__':
-    if checkIfProcessRunning("javaw.exe"):
+    if checkIfProcessRunning(runningFile):
         input('Minecraft is running. Please close game, and press any key to continue..')
         exec(open('App.py').read())
     else:
