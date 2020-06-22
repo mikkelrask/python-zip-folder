@@ -35,7 +35,7 @@ while in your saves folder, or you can use a cron job or similar, to do it for y
 
 ## Configuring
 
-While mega uploads can be anonymized, using the script assumes you have a Mega.nz account. Open up App.py in any text editor and put in your account credentials in (`megaMail` and `megaPass`), and put in the name if your world save folder name on (`world_name`), and hit save.
+While mega uploads can be anonymized, using the script assumes you have a Mega.nz account. Open up config.py in any text editor and put in your account credentials in (`user` and `password`), and put in the name if your world save folder name on (`folderName`), and hit save.
 
 **One liners**
 If you want to have more control or run multiple instances (to have more than one world backup, or back up to multiple accounts) you're also able to pass arguments through the commandline.
