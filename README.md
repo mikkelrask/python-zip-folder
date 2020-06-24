@@ -4,7 +4,7 @@ A simple python script i made to frequently backup my minecraft world, and autom
 
 It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org") and the idea is to run it on a daily basis through a basic [cron job](https://en.wikipedia.org/wiki/Cron "Cron on Wiki"), or whatever equilant your OS offers.
 
-The script sorta checks is the game is running, and will not execute if that is the case. This is to prevent currupt chunks/chunks that are being saved at the same time, as the script tries to backup or similar. It will not run if Java is running.
+The script will sorta check is the game is running, and will not execute if that is the case. This is to prevent chunk curruption i.e chunks that are being saved at the same time, as the script tries to backup or similar. Simply it will not run, if Java is running.
 
 It should be able to run on every machine that has python installed, but have not been testet thuroughly.
 
@@ -14,11 +14,7 @@ It should be able to run on every machine that has python installed, but have no
 
 **Download the script**
 
-`git clone https://github.com/mikkelrask/python-zip-folder.git`
-
-**Copy the script to your saves folder**
-
-`cp python-zip-folder/App.py PATH-TO-YOUR-SAVES-FOLDER`
+`git clone https://github.com/mikkelrask/python-zip-folder.git PATH-TO-YOUR-SAVES-FOLDER`
 
 The path varies from OS to OS. Windows is typically
 c:/Users/_Your Name_/AppData/Roaming/.minecraft/saves, while it's usually in ~/.minecraft/saves on unix like systems, like MacOS or most linux distros.
@@ -26,16 +22,11 @@ c:/Users/_Your Name_/AppData/Roaming/.minecraft/saves, while it's usually in ~/.
 **Install requirements (mega.py)**
 
 `pip install -r python-zip-folder/requirements.txt`
-
-Now you can either run the script manually simply by typing:
-
-`python App.py`
-
-while in your saves folder, or you can use a cron job or similar, to do it for you, on a specific schedule.
+Will install mega.py and psutil. 
 
 ## Configuring
 
-While mega uploads can be anonymized, using the script assumes you have a Mega.nz account. Open up config.py in any text editor and put in your account credentials in (`user` and `password`), and put in the name if your world save folder name on (`folderName`), and hit save.
+While mega uploads can be anonymized and do accept anonymous uploads, the script does assume you have a Mega.nz account and will not work if no account is given. Open up config.py in any text editor and put in your account credentials in (`user` and `password`), and put in the name if your world save folder name on (`folderName`), and hit save.
 
 **One liners**
 If you want to have more control or run multiple instances (to have more than one world backup, or back up to multiple accounts) you're also able to pass arguments through the commandline.
