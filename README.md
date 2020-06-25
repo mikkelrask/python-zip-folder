@@ -1,6 +1,6 @@
 # Python Zip'n'Backup
 
-A simple python script i made to frequently backup my minecraft world, and automaticly upload it to Mega.nz.
+A simple python script to frequently backup any folder, and automaticly upload it to Mega.nz. It is however made with a minecraft world folder in mind.
 
 It utilizes [mega.py](https://pypi.org/project/mega.py/ "mega.py on PyPi.org") and the idea is to run it on a daily basis through a basic [cron job](https://en.wikipedia.org/wiki/Cron "Cron on Wiki"), or whatever equilant your OS offers.
 
